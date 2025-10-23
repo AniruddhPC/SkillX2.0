@@ -18,7 +18,7 @@ const app = express();
 
 
 app.use(cors({
-  origin:'https://skillx2-0.onrender.com',
+  origin: ['http://localhost:5173', 'https://skillx2-0.onrender.com'],
   credentials: true,
 }));
 app.use(helmet());
