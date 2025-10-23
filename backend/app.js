@@ -18,7 +18,7 @@ const app = express();
 
 
 app.use(cors({
-  origin:'https://shiksha-mudraa.onrender.com',
+  origin:'https://skillx2-0.onrender.com',
   credentials: true,
 }));
 app.use(helmet());
