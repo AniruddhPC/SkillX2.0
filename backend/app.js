@@ -18,7 +18,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: ['https://skillx-v2.netlify.app', 'https://skillx2-0.onrender.com','http://localhost:5173/'],
+  origin: ['https://skillx-v2.netlify.app', 'https://skillx2-0.onrender.com','http://localhost:5173'],
   credentials: true,
 }));
 app.use(helmet());
