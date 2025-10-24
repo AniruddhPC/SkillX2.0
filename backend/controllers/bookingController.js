@@ -8,14 +8,14 @@ const Booking = require('../models/Booking');
 exports.createBooking = async (req, res, next) => {
   const { guru, skill, startTime, endTime, totalAmount } = req.body;
   try {
-    // Razorpay logic ko poori tarah hata dein.
-    const bookingfind = await Booking.findOne({
-  shishya: req.user.id,
-  guru,
-});
-if (bookingfind) {
-  return res.status(400).json({ message: "You have already booked this guru." });
-}
+//     // Razorpay logic ko poori tarah hata dein.
+//     const bookingfind = await Booking.findOne({
+//   shishya: req.user.id,
+//   guru,
+// });
+// if (bookingfind) {
+//   return res.status(400).json({ message: "You have already booked this guru." });
+// }
  
     const booking = await Booking.create({
       shishya: req.user.id,
