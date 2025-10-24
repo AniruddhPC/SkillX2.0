@@ -21,7 +21,7 @@ const MessageList = ({ activeUserId }) => {
             <div className="p-4 border-b">
                 <h2 className="text-xl font-bold">Conversations</h2>
                 <p className="text-sm text-muted-foreground">
-                    {user?.role === 'Guru' ? 'Chat with your Shishyas' : 'Chat with your Gurus'}
+                    {user?.role === 'Guru' ? 'Chat with your Learner' : 'Chat with your Mentor'}
                 </p>
             </div>
             {loading ? (

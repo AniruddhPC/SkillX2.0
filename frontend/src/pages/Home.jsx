@@ -646,7 +646,7 @@ const Home = () => {
               className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent"
               layoutId="section-title"
             >
-              Why Choose SkillBharat?
+              Why Choose SkillX?
             </motion.h2>
             <motion.p 
               className="text-xl text-muted-foreground max-w-3xl mx-auto"

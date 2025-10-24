@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="flex flex-col items-center md:items-start gap-4">
           <img src="/logo1.png" alt="Logo" className="h-8 w-8" />
           <p className="text-center md:text-left text-sm leading-relaxed">
-            Built for Hackathon. © {new Date().getFullYear()} ShikshaMudra Connect. All rights reserved.
+            SkillX is a platform that connects learners with expert mentors to help them achieve their personal and professional growth goals.
           </p>
 
           {/* Social Icons */}
@@ -99,7 +99,6 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="mt-10 border-t border-muted-foreground/20 pt-4 text-center text-xs text-muted-foreground">
-        Made with ❤️ by ShikshaMudra Connect Team
       </div>
     </footer>
   );

@@ -14,8 +14,8 @@ i18n
     resources: {
       en: {
         translation: {
-          welcome: 'Welcome to BharatSkill Connect',
-          findGurus: 'Find Gurus',
+          welcome: 'Welcome to SkillX',
+          findGurus: 'Find Mentor',
         }
       },
       hi: {

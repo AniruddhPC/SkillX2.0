@@ -44,7 +44,7 @@ const Chat = ({ activeUserId, contactInfo }) => {
                     <h2 className="text-lg font-bold">{contactInfo?.name || 'Select a chat'}</h2>
                     {/* Dynamic Title based on role */}
                     <p className="text-sm text-muted-foreground">
-                        {user.role === 'Guru' ? `Chat with your Shishya` : `Chat with your Guru`}
+                        {user.role === 'Guru' ? `Chat with your Learner` : `Chat with your Mentor`}
                     </p>
                 </div>
             </div>
