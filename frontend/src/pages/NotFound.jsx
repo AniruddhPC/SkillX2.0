@@ -12,12 +12,26 @@ const NotFound = () => {
             exit={{ opacity: 0, scale: 0.95 }}
             className="flex flex-col items-center justify-center text-center h-[60vh]"
         >
-            <h1 className="text-8xl font-extrabold text-primary tracking-tighter">404</h1>
-            <p className="text-2xl font-semibold mt-4">Page Not Found</p>
-            <p className="text-muted-foreground mt-2 max-w-sm">
-                Oops! The page you are looking for does not exist. It might have been moved or deleted.
-            </p>
-            <Button className="mt-8" onClick={() => navigate('/')}>Go Back to Home</Button>
+            <h1 className="text-4xl font-bold text-primary tracking-tighter">Notifications</h1>
+            <div className="mt-8 w-full max-w-md space-y-4">
+                <div className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <h3 className="font-semibold">New Message</h3>
+                    <p className="text-muted-foreground text-sm mt-1">
+                        You have received a new message from the admin.
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2">2 hours ago</p>
+                </div>
+                <div className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <h3 className="font-semibold">System Update</h3>
+                    <p className="text-muted-foreground text-sm mt-1">
+                        The system will undergo maintenance in 24 hours.
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2">1 day ago</p>
+                </div>
+            </div>
+            <Button className="mt-8" variant="outline" onClick={() => navigate('/')}>
+                Back to Dashboard
+            </Button>
         </motion.div>
     );
 };

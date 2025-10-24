@@ -1,10 +1,4 @@
 const Booking = require('../models/Booking');
-// 'createOrder' ki ab zaroorat nahi hai
-// const { createOrder } = require('../utils/payments');
-
-// @desc    Create a direct booking without payment
-// @route   POST /api/bookings
-// @access  Private
 exports.createBooking = async (req, res, next) => {
   const { guru, skill, startTime, endTime, totalAmount } = req.body;
   try {
@@ -15,7 +9,7 @@ exports.createBooking = async (req, res, next) => {
    guru,
  });
 if (bookingfind) {
-   return res.status(400).json({ message: "You have already booked this guru." });
+   return res.status(400).json({ message: "You have already booked this skill." });
  }
  
     const booking = await Booking.create({
@@ -72,15 +66,11 @@ exports.getMyBookings = async (req, res, next) => {
 };
 exports.getGuruBookings = async (req, res, next) => {
     try {
-        // Step 1: Logged-in Guru ki ID nikalein
         const guruId = req.user.id;
-
-        // Step 2: Database mein woh saari bookings dhoondhein jahan 'guru' field
-        // logged-in Guru ki ID se match karti ho
         const bookings = await Booking.find({ guru: guruId })
-            .populate('shishya', 'name avatar') // Har booking ke saath Shishya ka naam aur avatar bhi le aayein
-            .populate('skill', 'title')       // Aur skill ka title bhi le aayein
-            .sort({ createdAt: -1 });         // Sabse nayi booking sabse upar
+            .populate('shishya', 'name avatar') 
+            .populate('skill', 'title')     
+            .sort({ createdAt: -1 });        
 
         res.status(200).json(bookings);
     } catch (error) {
