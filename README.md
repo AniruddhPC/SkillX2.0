@@ -2,4 +2,4 @@ Backend->https://skillx2-0.onrender.com
 
 
 
-Frontend->https://skillx-v2.netlify.app/
+Frontend->https://skill-x-v1.netlify.app/
