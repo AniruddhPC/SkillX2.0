@@ -7,18 +7,20 @@ let onlineUsers = new Map();
 const initializeSocket = (server) => {
   const io = new Server(server, {
     cors: {
-     origin: [
+      origin: [
         'http://localhost:5173',
         'https://skill-x-v1.netlify.app'
       ],
       methods: ['GET', 'POST'],
+      credentials: true,
+      allowedHeaders: ['Content-Type', 'Authorization'],
     },
+    transports: ['polling', 'websocket']
   });
 
   io.on('connection', (socket) => {
     console.log(`User connected: ${socket.id}`);
 
-   
     socket.on('add_user', async (userId) => {
       onlineUsers.set(userId, socket.id);
       socket.join(userId);
@@ -27,49 +29,45 @@ const initializeSocket = (server) => {
       console.log(`User ${userId} is online.`);
     });
 
-    
     socket.on('send_message', async (data) => {
       const { sender, receiver, content } = data;
       const receiverSocketId = onlineUsers.get(receiver);
 
       const message = await Message.create({ sender, receiver, content });
-      
+
       if (receiverSocketId) {
         io.to(receiverSocketId).emit('receive_message', message);
       }
     });
-    
-    
+
     socket.on('typing', ({ receiver, isTyping }) => {
-        const receiverSocketId = onlineUsers.get(receiver);
-        if(receiverSocketId) {
-            io.to(receiverSocketId).emit('user_typing', { isTyping });
-        }
+      const receiverSocketId = onlineUsers.get(receiver);
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit('user_typing', { isTyping });
+      }
     });
 
-    
     socket.on('webrtc_offer', ({ offer, to }) => {
-        const receiverSocketId = onlineUsers.get(to);
-        if(receiverSocketId) {
-            io.to(receiverSocketId).emit('webrtc_offer', { offer, from: socket.id });
-        }
+      const receiverSocketId = onlineUsers.get(to);
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit('webrtc_offer', { offer, from: socket.id });
+      }
     });
 
     socket.on('webrtc_answer', ({ answer, to }) => {
-        const receiverSocketId = onlineUsers.get(to);
-         if(receiverSocketId) {
-            io.to(receiverSocketId).emit('webrtc_answer', { answer, from: socket.id });
-        }
+      const receiverSocketId = onlineUsers.get(to);
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit('webrtc_answer', { answer, from: socket.id });
+      }
     });
 
     socket.on('webrtc_ice_candidate', ({ candidate, to }) => {
-        const receiverSocketId = onlineUsers.get(to);
-        if(receiverSocketId) {
-            io.to(receiverSocketId).emit('webrtc_ice_candidate', { candidate, from: socket.id });
-        }
+      const receiverSocketId = onlineUsers.get(to);
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit('webrtc_ice_candidate', { candidate, from: socket.id });
+      }
     });
 
-    
     socket.on('disconnect', () => {
       let userId;
       for (let [key, value] of onlineUsers.entries()) {
